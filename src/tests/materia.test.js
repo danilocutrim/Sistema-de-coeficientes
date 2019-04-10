@@ -34,7 +34,7 @@ const MOCK_MATERIA_ATUALIZAR ={
     conceito:'C',
     periodo:'2'
 }
-let MOCK_HEROI_ID = ''
+let MOCK_MATERIA_ID = ''
 
 let context = {}
 describe('Mongodb Suite de testes mongo', function (){
@@ -49,7 +49,7 @@ describe('Mongodb Suite de testes mongo', function (){
         assert.deepEqual(result,expected)
     })
     it('cadastrar mongo ', async () =>{
-        await context.create(MOCK_MATERIA_DEFAULT)
+        const result = await context.create(MOCK_MATERIA_DEFAULT)
         const {ano,
          disciplina,
          categoria,
@@ -66,6 +66,7 @@ describe('Mongodb Suite de testes mongo', function (){
          creditos,
          conceito,
          periodo}, MOCK_MATERIA_CADASTRAR)
+         MOCK_MATERIA_ID = result._id
     })
     it('listar materias', async ()=>{
         const [{ano,
@@ -80,6 +81,16 @@ describe('Mongodb Suite de testes mongo', function (){
              ano, disciplina, categoria, codigo, situacao, creditos, conceito, periodo
          }
         assert.deepEqual(result,MOCK_MATERIA_DEFAULT)
+    })
+    it('update materia', async ()=>{
+        const result = await context.update(MOCK_MATERIA_ID,{
+        disciplina:'fvv'
+        })
+        assert.deepEqual(result.nModified,1)
+    })
+    it('delete materia', async ()=>{
+        const result = await context.delete(MOCK_MATERIA_ID)
+        assert.deepEqual(result.n, 1)
     })
 
 })
