@@ -17,6 +17,12 @@ class Icrud{
     delete(id){
         throw new NotImplementedException()
     }
+    addToArray(id,item){
+        throw new NotImplementedException()
+    }
+    addToArrayEach(id, item){
+        throw new NotImplementedException()
+    }
 }
 
 module.exports = Icrud

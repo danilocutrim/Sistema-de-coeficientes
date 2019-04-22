@@ -20,6 +20,12 @@ class ContextStrategy extends Icrud {
     delete(item){
         return this._database.delete(item)
     }
+    addToArray(id,item){
+        return this._database.addToArray(id,item)
+    }
+    addToArrayEach(id, item){
+        return this._database.addToArrayEach(id, item)
+    }
     static connect(){
         return this._database.connect()
     }

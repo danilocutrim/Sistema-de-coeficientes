@@ -43,6 +43,12 @@ class MongoDB extends Icrud{
     delete(id){
         return this._schema.deleteOne({_id: id})
     }
+    addToArray(id, item){
+        return this._schema.update({ _id:id},{$push: item })
+    }
+    addToArrayEach(id, item){
+    return this._schema.update({_id:id},{ $push: { item: { $each: item } } })
+    }
 }
 
 module.exports = MongoDB
