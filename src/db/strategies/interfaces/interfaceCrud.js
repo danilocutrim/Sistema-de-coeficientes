@@ -20,9 +20,7 @@ class Icrud{
     addToArray(id,item){
         throw new NotImplementedException()
     }
-    addToArrayEach(id, item){
-        throw new NotImplementedException()
-    }
+
 }
 
 module.exports = Icrud

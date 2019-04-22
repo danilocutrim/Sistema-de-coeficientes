@@ -53,10 +53,10 @@ const vetor = [{ "ano": 2015, "disciplina": "Base Experimental das Ciências Nat
  { "ano": 2015, "disciplina": "Estrutura da Matéria", "categoria": "Obrigatória", "codigo": "BIK0102-13", "situacao": "Aprovado", "creditos": 3, "conceito": "B", "periodo": "2" },
   { "ano": 2015, "disciplina": "Origem da Vida e Diversidade dos Seres Vivos", "categoria": "Obrigatória", "codigo": "BIL0304-13", "situacao": "Aprovado", "creditos": 3, "conceito": "C", "periodo": "2" }]
 let MOCK_ALUNO_ID = ''
-let MOCK_ALUNO_ID2 = '5cbd00deb229ff4d308b2d98'
+let MOCK_ALUNO_ID2 = '5cbdb55312cddc196ef73893'
 
 let context = {}
-describe.only('Mongo DB suite teste aluno',function(){
+describe('Mongo DB suite teste aluno',function(){
     this.beforeAll(async()=>{
         const connection = Mongodb.connect()
         context = new Context(new Mongodb(connection, AlunoSchema))
@@ -178,14 +178,8 @@ describe.only('Mongo DB suite teste aluno',function(){
         assert.deepEqual(result.n,1)
     })
     it('deve adicionar um elemento de array de objeto ', async()=>{
-        const result = await context.addToArray(MOCK_ALUNO_ID2,{materias:MOCK_MATERIA_CADASTRAR_ARR})
+        const result = await context.addToArray(MOCK_ALUNO_ID2,{materias:vetor})
         assert.deepEqual(result.nModified,1)
-    })
-    it('deve cadastrar o json pego no portal do aluno', async()=>{
-        const result = await context.addToArrayEach(MOCK_ALUNO_ID2,{materias:vetor})
-        console.log(result)
-        console.log(vetor)
-
     })
 
 })

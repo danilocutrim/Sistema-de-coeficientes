@@ -11,8 +11,8 @@ class ContextStrategy extends Icrud {
     create(item){
         return this._database.create(item)
     }
-    read(item){
-        return this._database.read(item)
+    read(item,skip,limit){
+        return this._database.read(item,skip,limit)
     }
     update(id, item){
         return this._database.update(id, item)
@@ -23,9 +23,7 @@ class ContextStrategy extends Icrud {
     addToArray(id,item){
         return this._database.addToArray(id,item)
     }
-    addToArrayEach(id, item){
-        return this._database.addToArrayEach(id, item)
-    }
+
     static connect(){
         return this._database.connect()
     }
