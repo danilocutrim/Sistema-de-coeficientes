@@ -53,7 +53,7 @@ const vetor = [{ "ano": 2015, "disciplina": "Base Experimental das Ciências Nat
  { "ano": 2015, "disciplina": "Estrutura da Matéria", "categoria": "Obrigatória", "codigo": "BIK0102-13", "situacao": "Aprovado", "creditos": 3, "conceito": "B", "periodo": "2" },
   { "ano": 2015, "disciplina": "Origem da Vida e Diversidade dos Seres Vivos", "categoria": "Obrigatória", "codigo": "BIL0304-13", "situacao": "Aprovado", "creditos": 3, "conceito": "C", "periodo": "2" }]
 let MOCK_ALUNO_ID = ''
-let MOCK_ALUNO_ID2 = '5cbe805152fc5524e1082b14'
+let MOCK_ALUNO_ID2 = '5cbdadd36b28b816b2cd29ff'
 
 let context = {}
 describe('Mongo DB suite teste aluno',function(){

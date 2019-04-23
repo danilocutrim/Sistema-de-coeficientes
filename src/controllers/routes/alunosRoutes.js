@@ -15,6 +15,16 @@ class AlunoRoutes extends BaseRoute{
         return{
             path:'/alunos',
             method:'GET',
+            config:{
+                validate:{
+                    failAction,
+                    query:{
+                        skip: Joi.number().integer().default(0),
+                        limit: Joi.number().integer().default(10),
+                        nomealuno: Joi.string().min(3).max(100)
+                    }
+                }
+            },
             handler:(request, headers)=>{
                try{
                    const{
@@ -24,6 +34,7 @@ class AlunoRoutes extends BaseRoute{
                    } = request.query
                    const query = nomealuno ?
                         {nomealuno:{$regex: `.*${nomealuno}*.`}} : {}
+
                     return this.db.read(nomealuno ?query : {}, parseInt(skip), parseInt(limit))
 
                 } catch(error) {
