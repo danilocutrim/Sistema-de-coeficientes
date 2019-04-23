@@ -53,7 +53,7 @@ const vetor = [{ "ano": 2015, "disciplina": "Base Experimental das Ciências Nat
  { "ano": 2015, "disciplina": "Estrutura da Matéria", "categoria": "Obrigatória", "codigo": "BIK0102-13", "situacao": "Aprovado", "creditos": 3, "conceito": "B", "periodo": "2" },
   { "ano": 2015, "disciplina": "Origem da Vida e Diversidade dos Seres Vivos", "categoria": "Obrigatória", "codigo": "BIL0304-13", "situacao": "Aprovado", "creditos": 3, "conceito": "C", "periodo": "2" }]
 let MOCK_ALUNO_ID = ''
-let MOCK_ALUNO_ID2 = '5cbdb55312cddc196ef73893'
+let MOCK_ALUNO_ID2 = '5cbe805152fc5524e1082b14'
 
 let context = {}
 describe('Mongo DB suite teste aluno',function(){
@@ -110,7 +110,7 @@ describe('Mongo DB suite teste aluno',function(){
                conceito,
                periodo
         },MOCK_ALUNO_CADASTRAR.materias[0])
-
+        console.log(MOCK_ALUNO_CADASTRAR)
         assert.deepEqual(result.nomealuno,MOCK_ALUNO_CADASTRAR.nomealuno)
         assert.deepEqual(result.ra,MOCK_ALUNO_CADASTRAR.ra)
         assert.deepEqual(result.senha,MOCK_ALUNO_CADASTRAR.senha)
@@ -173,12 +173,13 @@ describe('Mongo DB suite teste aluno',function(){
         const result = await context.update(MOCK_ALUNO_ID,{nomealuno: 'marcel'})
         assert.deepEqual(result.nModified,1)
     })
-    it('deve deletar um heroi por id', async()=>{
+    it('deve deletar um aluno por id', async()=>{
         const result = await context.delete(MOCK_ALUNO_ID)
         assert.deepEqual(result.n,1)
     })
     it('deve adicionar um elemento de array de objeto ', async()=>{
         const result = await context.addToArray(MOCK_ALUNO_ID2,{materias:vetor})
+        console.log(result)
         assert.deepEqual(result.nModified,1)
     })
 

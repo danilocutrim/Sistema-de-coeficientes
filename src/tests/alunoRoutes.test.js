@@ -2,7 +2,7 @@ const assert = require('assert')
 const api = require('../controllers/api')
 let app = {}
 
-describe.only('Suite te deste para rotas Dos Aluno',function(){
+describe('Suite de teste para rotas Dos Aluno',function(){
     this.beforeAll(async()=>{
         app = await api
     })
@@ -16,7 +16,7 @@ describe.only('Suite te deste para rotas Dos Aluno',function(){
     })
     it('listar /alunos deve filtrar um item ' ,async ()=>{
         const TAMANHO_LIMITE = 1000
-        const NAME = 'gavião negro'
+        const NAME = 'rosimeire'
         const result = await app.inject({
             method:'GET',
             url:`/alunos?skip=0&limit=${TAMANHO_LIMITE}&nomealuno=${NAME}`
