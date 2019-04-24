@@ -44,10 +44,60 @@ class AlunoRoutes extends BaseRoute{
             }
         }
     }
-    // create(){
-    //     return{
+    createaluno(){
+        return{
+            path:'/alunos',
+            method:'POST',
+            handler: async(request)=>{
+                try{
+                    const{nomealuno,
+                              ra,
+                              senha,
+                              curso,
+                              coeficientes,
+                              materias
+                          } = request.payload
+                          const result = await this.db.create({nomealuno,
+                              ra,
+                              senha,
+                              curso,
+                              coeficientes,
+                              materias
+                          })
+                          return{
+                           message:'aluno cadastrado com sucesso',
+                          result
+                          }
 
-    //     }
-    // }
+                } catch(error){
+                    console.log('error interno',error)
+                    return Boom.internal()
+
+                }
+            }
+        }
+    }
+    cadastrarmateria(){
+        return {
+            method:'POST',
+            path:'/addmateria/{id}',
+            handler: async(request)=>{
+                try{
+                    const{id} =request.params
+                    const{payload} = request
+                    const dadosString = JSON.stringify(payload)
+                    const dados = JSON.parse(dadosString)
+                    const result = await this.db.addToArray(id,{materias:dados})
+                    return{
+                        message:'materia cadastrada',
+                        id
+                    }
+                } catch(error){
+                    console.log('erro interno')
+                    return Boom.internal()
+                }
+            }
+        }
+    }
 }
 module.exports = AlunoRoutes

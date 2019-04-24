@@ -76,12 +76,12 @@ const alunoSchema = new Mongoose.Schema({
         type:Number,
         require:true,
     },
-    curso:[cursoSchema],
-    coeficientes:[coeficientesSchema],
     senha:{
         type:String,
         require:true
     },
+    curso:[cursoSchema],
+    coeficientes:[coeficientesSchema],
     materias:[materiaSchema]
 })
 module.exports = Mongoose.model('alunos',alunoSchema)

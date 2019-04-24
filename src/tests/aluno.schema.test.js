@@ -49,17 +49,29 @@ const MOCK_ALUNO_CADASTRAR = {
     coeficientes:[MOCK_COEFICIENTES_CADASTRAR],
     materias:[MOCK_MATERIA_CADASTRAR]
 }
+const MOCK_ALUNO_CADASTRAR2 = {
+    nomealuno:'daniloteste',
+    ra:1121,
+    senha:'12344',
+    curso:[],
+    coeficientes:[],
+    materias:[]
+}
 const vetor = [{ "ano": 2015, "disciplina": "Base Experimental das Ciências Naturais", "categoria": "Obrigatória", "codigo": "BCS0001-13", "situacao": "Aprovado", "creditos": 3, "conceito": "A", "periodo": "2" },
  { "ano": 2015, "disciplina": "Estrutura da Matéria", "categoria": "Obrigatória", "codigo": "BIK0102-13", "situacao": "Aprovado", "creditos": 3, "conceito": "B", "periodo": "2" },
   { "ano": 2015, "disciplina": "Origem da Vida e Diversidade dos Seres Vivos", "categoria": "Obrigatória", "codigo": "BIL0304-13", "situacao": "Aprovado", "creditos": 3, "conceito": "C", "periodo": "2" }]
 let MOCK_ALUNO_ID = ''
-let MOCK_ALUNO_ID2 = '5cbdadd36b28b816b2cd29ff'
+let MOCK_ALUNO_ID2 = '5cc05b3416d01d2097559ff9'
 
 let context = {}
 describe('Mongo DB suite teste aluno',function(){
     this.beforeAll(async()=>{
         const connection = Mongodb.connect()
         context = new Context(new Mongodb(connection, AlunoSchema))
+    })
+    it('cadastrar informações individuais',async()=>{
+        const result = await context.create(MOCK_ALUNO_CADASTRAR2)
+        console.log(result)
     })
     it('cadastrar aluno e parametros', async()=>{
         const result = await context.create(MOCK_ALUNO_CADASTRAR)
