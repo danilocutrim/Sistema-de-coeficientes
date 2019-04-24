@@ -112,7 +112,7 @@ describe('Suite de teste para rotas Dos Aluno',function(){
 
     })
     it('cadastrar uma materia com id do aluno',async()=>{
-        const id ='5cc072205fba4d3625e16bce'
+        const id ='5cc0755bfbe570399b04d128'
         const result = await app.inject({
             method:"POST",
             url:`/addmateria/${id}`,

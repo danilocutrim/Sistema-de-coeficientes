@@ -16,6 +16,9 @@ class AlunoRoutes extends BaseRoute{
             path:'/alunos',
             method:'GET',
             config:{
+                description:'Deve retornar a lista com alunos ou aluno especifico atraves do skip',
+                notes:'Filtrar por nome para usar no projeto',
+                tags:['api'],
                 validate:{
                     failAction,
                     query:{
@@ -48,6 +51,9 @@ class AlunoRoutes extends BaseRoute{
         return{
             path:'/alunos',
             method:'POST',
+            config:{
+                tags:['api']
+            },
             handler: async(request)=>{
                 try{
                     const{nomealuno,
@@ -81,6 +87,27 @@ class AlunoRoutes extends BaseRoute{
         return {
             method:'POST',
             path:'/addmateria/{id}',
+            config:{
+                tags:['api'],
+                description:'Deve adicionar uma matéria utilizando o id do aluno',
+                notes:'deve preenhcer todos os campos',
+                validate:{
+                    failAction,
+                    params:{
+                        id: Joi.string()
+                    },
+                    payload:{
+                        ano: Joi.number().integer(),
+                        categoria: Joi.string().max(100),
+                        codigo:Joi.string().max(100),
+                        conceito:Joi.string().max(100),
+                        creditos:Joi.number().integer(),
+                        disciplina:Joi.string().max(100),
+                        periodo:Joi.string().max(100),
+                        situacao:Joi.string().max(100)
+                    }
+                }
+            },
             handler: async(request)=>{
                 try{
                     const{id} =request.params
