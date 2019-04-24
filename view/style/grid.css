@@ -1,0 +1,396 @@
+/*!
+ * Author: Matheus Alexandre de Sena (@matthsena) 
+ * Elementary Grid vAlfa 
+ * Licensed under MIT (https://github.com/matthsena/elementary-grid/blob/master/LICENSE)
+ */
+html {
+    box-sizing: border-box;
+    -ms-overflow-style: scrollbar;
+    color: #1c1c1c;
+    font-family: Arial, Helvetica, sans-serif
+}
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0px;
+    padding: 0px
+}
+/*!
+ * Container
+ */
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 15px
+}
+/*!
+ * Row
+ */  
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: 0 -15px
+}
+/*!
+ * Columns
+ */
+.col {
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%
+}
+.xs-1,.xs-2,.xs-3,.xs-4,.xs-5,.xs-6,.xs-7,.xs-8,.xs-9,.xs-10,.xs-11,.xs-12,
+.sm-1,.sm-2,.sm-3,.sm-4,.sm-5,.sm-6,.sm-7,.sm-8,.sm-9,.sm-10,.sm-11,.sm-12,
+.md-1,.md-2,.md-3,.md-4,.md-5,.md-6,.md-7,.md-8,.md-9,.md-10,.md-11,.md-12 {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+/*!
+ * Width greater than 768px e.g: Notebooks, PCs
+ */
+@media (min-width: 768px) {
+    .md-1 {
+        -ms-flex: 0 0 8.3333%;
+        flex: 0 0 8.3333%;
+        max-width: 8.3333%
+    }
+    .md-2 {
+        -ms-flex: 0 0 16.6666%;
+        flex: 0 0 16.6666%;
+        max-width: 16.6666%
+    }
+    .md-3 {
+        -ms-flex: 0 0 25%;
+        flex: 0 0 25%;
+        max-width: 25%
+    }
+    .md-4 {
+        -ms-flex: 0 0 33.3333%;
+        flex: 0 0 33.3333%;
+        max-width: 33.3333%
+    }
+    .md-5 {
+        -ms-flex: 0 0 41.6666%;
+        flex: 0 0 41.6666%;
+        max-width: 41.6666%
+    }
+    .md-6 {
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%
+    }
+    .md-7 {
+        -ms-flex: 0 0 58.3333%;
+        flex: 0 0 58.3333%;
+        max-width: 58.3333%
+    }
+    .md-8 {
+        -ms-flex: 0 0 66.6666%;
+        flex: 0 0 66.6666%;
+        max-width: 66.6666%
+    }
+    .md-9 {
+        -ms-flex: 0 0 75%;
+        flex: 0 0 75%;
+        max-width: 75%
+    }
+    .md-10 {
+        -ms-flex: 0 0 83.3333%;
+        flex: 0 0 83.3333%;
+        max-width: 83.3333%
+    }
+    .md-11 {
+        -ms-flex: 0 0 91.6666%;
+        flex: 0 0 91.6666%;
+        max-width: 91.6666%
+    }
+    .md-12 {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%
+    }
+}
+/*!
+ * Width greater than 576px and less than 768px e.g: Tablets, iPads
+ */
+@media (min-width: 576px) and (max-width: 768px) {
+    .sm-1 {
+        -ms-flex: 0 0  8.3333%;
+        flex: 0 0  8.3333%;
+        max-width: 8.3333%
+    }
+    .sm-2 {
+        -ms-flex: 0 0 16.6666%;
+        flex: 0 0 16.6666%;
+        max-width: 16.6666%
+    }
+    .sm-3 {
+        -ms-flex: 0 0 25%;
+        flex: 0 0 25%;
+        max-width: 25%
+    }
+    .sm-4 {
+        -ms-flex: 0 0 33.3333%;
+        flex: 0 0 33.3333%;
+        max-width: 33.3333%
+    }
+    .sm-5 {
+        -ms-flex: 0 0 41.6666%;
+        flex: 0 0 41.6666%;
+        max-width: 41.6666%
+    }
+    .sm-6 {
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%
+    }
+    .sm-7 {
+        -ms-flex: 0 0 58.3333%;
+        flex: 0 0 58.3333%;
+        max-width: 58.3333%
+    }
+    .sm-8 {
+        -ms-flex: 0 0 66.6666%;
+        flex: 0 0 66.6666%;
+        max-width: 66.6666%
+    }
+    .sm-9 {
+        -ms-flex: 0 0 75%;
+        flex: 0 0 75%;
+        max-width: 75%
+    }
+    .sm-10 {
+        -ms-flex: 0 0 83.3333%;
+        flex: 0 0 83.3333%;
+        max-width: 83.3333%
+    }
+    .sm-11 {
+        -ms-flex: 0 0 91.6666%;
+        flex: 0 0 91.6666%;
+        max-width: 91.6666%
+    }
+    .sm-12 {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%
+    }
+}
+/*!
+ * Width less than 576px e.g: Smartphones
+ */
+@media (max-width: 576px) {
+    .xs-1 {
+        -ms-flex: 0 0 8.3333%;
+        flex: 0 0 8.3333%;
+        max-width: 8.3333%
+    }
+    .xs-2 {
+        -ms-flex: 0 0 16.6666%;
+        flex: 0 0 16.6666%;
+        max-width: 16.6666%
+    }
+    .xs-3 {
+        -ms-flex: 0 0 25%;
+        flex: 0 0 25%;
+        max-width: 25%
+    }
+    .xs-4 {
+        -ms-flex: 0 0 33.3333%;
+        flex: 0 0 33.3333%;
+        max-width: 33.3333%
+    }
+    .xs-5 {
+        -ms-flex: 0 0 41.6666%;
+        flex: 0 0 41.6666%;
+        max-width: 41.6666%
+    }
+    .xs-6 {
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%
+    }
+    .xs-7 {
+        -ms-flex: 0 0 58.3333%;
+        flex: 0 0 58.3333%;
+        max-width: 58.3333%
+    }
+    .xs-8 {
+        -ms-flex: 0 0 66.6666%;
+        flex: 0 0 66.6666%;
+        max-width: 66.6666%
+    }
+    .xs-9 {
+        -ms-flex: 0 0 75%;
+        flex: 0 0 75%;
+        max-width: 75%
+    }
+    .xs-10 {
+        -ms-flex: 0 0 83.3333%;
+        flex: 0 0 83.3333%;
+        max-width: 83.3333%
+    }
+    .xs-11 {
+        -ms-flex: 0 0 91.6666%;
+        flex: 0 0 91.6666%;
+        max-width: 91.6666%
+    }
+    .xs-12 {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%
+    }
+}
+/*!
+ * Input elements
+ */
+.text-field {
+    width: 100%;
+    outline: none;
+    padding: 5px 0px;
+    margin: 5px 0px;
+    font-size: 16px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #1c1c1c;
+}
+.text-field:focus,
+.text-field:active {
+    transition-property: border-color;
+    transition-duration: .5s;
+    transition-timing-function: linear;
+    transition-delay: .1s;
+    border-bottom: 2px solid #2196f3;
+}
+/*!
+ * Navbar
+ */
+ * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0px;
+    font-family: 'segoe ui';
+  }
+  
+  .navbar {
+    height: 50px;
+    background-color: #1c1c1c;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+    z-index: 9999;
+  }
+  
+  .navbar > .nav-header {
+    display: inline;
+  }
+  
+  .navbar > .nav-header > .nav-title {
+    display: inline-block;
+    font-size: 22px;
+    color: #fff;
+    padding: 10px 10px 10px 10px;
+  }
+  
+  .navbar > .nav-btn {
+    display: none;
+  }
+  
+  .navbar > .nav-links {
+    display: inline;
+    font-size: 18px;
+  }
+  
+  .navbar > .nav-links > a {
+    display: inline-block;
+    padding: 13px 10px 13px 10px;
+    text-decoration: none;
+    color: #efefef;
+  }
+  
+  .navbar > .nav-links > a:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  
+  .navbar > #nav-check {
+    display: none;
+  }
+  
+  @media (max-width:576px) {
+    .navbar > .nav-btn {
+      display: inline-block;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+    }
+    .navbar > .nav-btn > label {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      padding: 13px;
+    }
+    .navbar > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
+      background-color: #1c1c1c71;
+    }
+    .navbar > .nav-btn > label > span {
+      display: block;
+      width: 25px;
+      height: 10px;
+      border-top: 2px solid #eee;
+    }
+    .navbar > .nav-links {
+      position: absolute;
+      display: block;
+      width: 100%;
+      background-color: #1c1c1c;
+      height: 0px;
+      transition: all 0.4s ease-in-out;
+      overflow-y: hidden;
+      top: 50px;
+      left: 0px;
+      z-index: 9999
+    }
+    .navbar > .nav-links > a {
+      display: block;
+      width: 100%;
+    }
+    .navbar > #nav-check:not(:checked) ~ .nav-links {
+      height: 0px;
+    }
+    .navbar > #nav-check:checked ~ .nav-links {
+      height: calc(100vh - 50px);
+      overflow-y: auto;
+    }
+  }
+
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 9999;
+}
+.fixed-bottom {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9999;
+}
+.pink {
+    background: rgb(204, 200, 201);
+}
+
+.blue {
+    background: rgb(222, 222, 233);
+}
