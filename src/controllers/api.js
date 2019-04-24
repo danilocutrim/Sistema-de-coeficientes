@@ -1,3 +1,12 @@
+const {config}= require('dotenv')
+const {join} = require('path')
+const {ok } = require('assert')
+const env = process.env.NODE_ENV || 'dev'
+ok(env==='prod' || env==='dev', 'a env é invalida')
+const configpath = join(__dirname, '../../config/',`.env.${env}`)
+config({
+    path:configpath
+})
 const Hapi = require('hapi')
 const Mongodb = require('../db/strategies/mongodb/mongodb')
 const AlunoSchema = require('../db/strategies/mongodb/scheemas/alunoSchema')
@@ -6,7 +15,7 @@ const Context = require('../db/strategies/base/contextStrategy')
 const HapiSwagger = require('hapi-swagger')
 const Vision = require('vision')
 const Inert = require('inert')
-const PORT = 5000
+const PORT = process.env.PORT
 const app = new Hapi.server({
     port:PORT
 })
@@ -38,7 +47,7 @@ async function main(){
     ])
 
     await app.start()
-    console.log('rodando na porta 5000')
+    console.log(`rodando na porta ${PORT}`)
     return app
 }
 module.exports = main()
