@@ -62,7 +62,11 @@ const vetor = [{ "ano": 2015, "disciplina": "Base Experimental das Ciências Nat
   { "ano": 2015, "disciplina": "Origem da Vida e Diversidade dos Seres Vivos", "categoria": "Obrigatória", "codigo": "BIL0304-13", "situacao": "Aprovado", "creditos": 3, "conceito": "C", "periodo": "2" }]
 let MOCK_ALUNO_ID = ''
 let MOCK_ALUNO_ID2 = '5cc05b3416d01d2097559ff9'
-
+const MOCK_COEFICIENTES_ATUALIZAR = {
+    ca:1,
+    cp:2,
+    cr:1
+}
 let context = {}
 describe('Mongo DB suite teste aluno',function(){
     this.beforeAll(async()=>{
@@ -182,7 +186,7 @@ describe('Mongo DB suite teste aluno',function(){
             }, MOCK_ALUNO_DEFAULT.materias[0])
     })
     it('deve atualizar um id especifico', async()=>{
-        const result = await context.update(MOCK_ALUNO_ID,{nomealuno: 'marcel'})
+        const result = await context.update('5cbf92cfb5f9081adb14e3fe',{coeficientes: MOCK_COEFICIENTES_ATUALIZAR})
         assert.deepEqual(result.nModified,1)
     })
     it('deve deletar um aluno por id', async()=>{

@@ -52,7 +52,37 @@ class AlunoRoutes extends BaseRoute{
             path:'/alunos',
             method:'POST',
             config:{
-                tags:['api']
+                tags:['api'],
+                validate:{
+                    failAction,
+
+                    payload:{
+                        nomealuno:Joi.string().max(100),
+                        ra: Joi.number().integer(),
+                        senha:Joi.string().max(100),
+                        curso:Joi.array().items(Joi.object({
+                            nomecurso: Joi.string().max(100),
+                            codigocurso:Joi.string().max(100),
+                            campus:Joi.string().max(100),
+                            creditostotal:Joi.number().integer()
+                        })),
+                        coeficientes:Joi.array().items(Joi.object({
+                            ca:Joi.number(),
+                            cp:Joi.number(),
+                            cr:Joi.number()
+                        })),
+                        materias: Joi.array().items(Joi.object({
+                            ano: Joi.number().integer(),
+                            disciplina:Joi.string().max(100),
+                            categoria:Joi.string().max(100),
+                            codigo:Joi.string().max(100),
+                            situacao:Joi.string().max(100),
+                            creditos:Joi.number().integer(),
+                            conceito:Joi.string().max(100),
+                            periodo:Joi.string().max(100)
+                        }))
+                    }
+                }
             },
             handler: async(request)=>{
                 try{
@@ -117,6 +147,44 @@ class AlunoRoutes extends BaseRoute{
                     const result = await this.db.addToArray(id,{materias:dados})
                     return{
                         message:'materia cadastrada',
+                        id
+                    }
+                } catch(error){
+                    console.log('erro interno')
+                    return Boom.internal()
+                }
+            }
+        }
+    }
+    updatecoeficientes(){
+        return {
+            method:'POST',
+            path:'/coeficiente/{id}',
+            config:{
+                tags:['api'],
+                description:'atualizar coeficientes',
+                notes:'deve preenhcer todos os campos',
+                validate:{
+                    failAction,
+                    params:{
+                        id: Joi.string()
+                    },
+                    payload:{
+                            ca:Joi.number(),
+                            cp:Joi.number(),
+                            cr:Joi.number()
+                        }
+                }
+            },
+            handler: async(request)=>{
+                try{
+                    const{id} =request.params
+                    const{payload} = request
+                    const dadosString = JSON.stringify(payload)
+                    const dados = JSON.parse(dadosString)
+                    const result = await this.db.update(id,{coeficientes:dados})
+                    return{
+                        message:'coeficientes atualizados',
                         id
                     }
                 } catch(error){

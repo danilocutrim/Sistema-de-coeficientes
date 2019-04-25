@@ -26,6 +26,11 @@ const MOCK_COEFICIENTES_CADASTRAR = {
     cp:3,
     cr:4
 }
+const MOCK_COEFICIENTES_ATUALIZAR = {
+    ca:1,
+    cp:2,
+    cr:2
+}
 const MOCK_CURSO_CADASTRAR = {
     nomecurso:'Engenharia',
     codigocurso:'0303efd',
@@ -41,7 +46,7 @@ const MOCK_ALUNO_DEFAULT = {
     materias:[MOCK_MATERIA_CADASTRAR]
 }
 const MOCK_ALUNO_CADASTRAR = {
-    nomealuno:'cadastrado pela rota333',
+    nomealuno:'cadastrado pela rota44',
     ra:1121,
     senha:'12344',
     curso:[MOCK_CURSO_CADASTRAR],
@@ -121,5 +126,15 @@ describe('Suite de teste para rotas Dos Aluno',function(){
         console.log(result.payload)
         console.log(result.statusCode)
         assert.deepEqual(result.statusCode,200)
+    })
+    it.only('deve atualizar coeficientes com id do aluno',async()=>{
+        const id = '5cbf927082015b1a6a4e8c42'
+        const result = await app.inject({
+            method:'PATH',
+            url:`/coeficientes/${id}`,
+            payload: JSON.stringify([MOCK_COEFICIENTES_ATUALIZAR])
+        })
+        const statusCode = result.statusCode
+        const dados = JSON.parse(result.payload)
     })
 })
