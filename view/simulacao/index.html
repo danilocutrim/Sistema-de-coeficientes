@@ -44,17 +44,20 @@
         .inline {
             display: inline;
         }
+
         .title {
             text-align: center;
             font-weight: 900;
             font-size: 25px;
         }
+
         .result {
             font-weight: bold;
             line-height: 1.5;
             padding: 15px 0px;
             text-align: center;
         }
+
         .error {
             font-weight: bold;
             color: red;
@@ -67,8 +70,11 @@
         <div class="row">
             <div class="col md-4 xs-12 sm-12">
                 <h2 class="title">Cadastrar disciplinas atuais</h2>
-                <input type="text" class="text-field" placeholder="Nome disciplina" v-model="nomeDisc">
-                <input type="number" class="text-field" placeholder="Creditos" v-model="creditos">
+                <p>Disciplina</p>
+                <select v-model="nomeDisc" class="text-field">
+                    <option v-for="(i, index) in disc" :key="index" :value="i.nome">{{i.nome}}</option>
+                </select>
+                <input type="number" class="text-field" placeholder="Creditos" v-model="creditos" readonly>
                 <div class="inline">
                     <span class="half-txt">Conceito</span>
                     <select class="text-field half" v-model="conceito">

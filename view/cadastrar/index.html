@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,14 +10,16 @@
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
-            padding-top: 15%;
+            padding-top: 10%;
         }
+
         .card {
             padding: 50px;
             float: left;
             margin: 0 auto;
             box-shadow: 2px 2px 5px #000;
         }
+
         .btn {
             background: black;
             color: white;
@@ -28,21 +31,64 @@
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
+    <div class="container" id="cadastro">
         <div class="row">
             <div class="spacer"></div>
             <div class="col md-4 xs-12 sm-12 card">
                 <h1>Cadastrar</h1>
-                <input type="text" name="" id="" class="text-field" placeholder="Nome">
-                <input type="number" name="" id="" class="text-field" placeholder="RA">
-                <input type="email" name="" id="" class="text-field" placeholder="Email">
-                <input type="password" class="text-field" placeholder="Senha">
+                <input type="text" class="text-field" placeholder="Nome" v-model="aluno.nome">
+                <input type="number" class="text-field" placeholder="RA" v-model="aluno.ra">
+                <p>Cursos:</p>
+                <select v-model="aluno.curso">
+                    <option v-for="(i, index) in cursosDisponiveis" :key="index" :value="index">
+                        {{i.nomeCurso}}</option>
+                </select>
+                <p>Campus:</p>
+                <select v-model="aluno.campus">
+                    <option v-for="(i, index) in campiDisponiveis" :key="index" :value="i">
+                        {{i}}</option>
+                </select>
+                <input type="email" class="text-field" placeholder="Email" v-model="aluno.email">
+                <input type="password" class="text-field" placeholder="Senha" v-model="aluno.senha">
                 <label for="file">Importar JSON</label>
-                <input type="file" id="file">
+                <input type="file" @change="filex">
                 <button class="btn">Cadastrar</button>
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script>
+        new Vue({
+            el: "#cadastro",
+            data: {
+                cursosDisponiveis: [{
+                    nomeCurso: "",
+                    codCurso: "",
+                    creditosTotal: 0
+                }, {
+                    nomeCurso: "Ciência da computação",
+                    codCurso: "000E",
+                    creditosTotal: 90
+                }],
+                aluno: {
+                    campus: null,
+                    nome: null,
+                    ra: null,
+                    curso: null,
+                    email: null,
+                    senha: null
+                },
+                campiDisponiveis: [
+                    "",
+                    "Santo André",
+                    "São Bernardo do Campo"
+                ],
+            }
+        })
+    </script>
 </body>
+
 </html>
