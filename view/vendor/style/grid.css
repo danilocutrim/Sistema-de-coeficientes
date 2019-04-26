@@ -251,6 +251,7 @@ html {
  * Input elements
  */
 .text-field {
+    color: #eee;
     width: 100%;
     outline: none;
     padding: 5px 0px;
@@ -266,7 +267,10 @@ html {
     transition-duration: .5s;
     transition-timing-function: linear;
     transition-delay: .1s;
-    border-bottom: 1.5pt solid #2196f3;
+    border-bottom: 1.5pt solid #eee;
+}
+select option {
+    color: #1c1c1c;
 }
 /*!
  * Navbar

@@ -1,18 +1,51 @@
 body {
     margin-top: 75px;      
     font-family: Arial, Helvetica, sans-serif;
-    background: #eee
+    background: #eee;
+    color: #fff;
+}
+.col {
+    border-right: 2px solid rgba(0,0,0,0.25);
+}
+.col:last-child {
+    border: none;
+}
+.title {
+    padding: 20px 0px;
+    font-size: 34px;
+    text-align: center;
+    color: #FFD200
+}
+.explain {
+    text-align: justify;
+    padding: 15px 10px;
+    box-shadow: 1px 1px 3px 1px #000;
+    background: rgba(255, 255, 255, 0.1);
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+}
+.half {
+    width: 50%;
+    padding: 0px;
+}
+span.half {
+    font-weight: bold;
+}
+.mt {
+    margin: 25px 0px !important;
 }
 .card {
     
     padding: 50px;
     margin: 0 auto;
     box-shadow: 2px 2px 5px #000;
-    background: url("../vendor/img/textura-verde.JPG")
+    background: #065E22
 }
 .btn {
-    background: black;
-    color: white;
+    background: #FFD200;
+    color: #000;
+    font-weight: 600;
     border: none;
     padding: 10px;
     margin-top: 15px;
@@ -26,11 +59,19 @@ body {
     transition-timing-function: ease;
     transition-delay: .1s;
     cursor: pointer;
-    background: white;
-    color: black;
+    background: #000;
+    color: #FFD200;
 }
 .error {
     padding: 15px 0px;
     font-weight: bold;
     color: red;
+}
+.result {
+    font-weight: 600;
+    font-size: 20px;
+    padding: 15px;
+    box-shadow: 1px 1px 3px 1px black;
+    margin: 10px 5px;
+    background: rgba(255, 255, 255, 0.2);
 }
