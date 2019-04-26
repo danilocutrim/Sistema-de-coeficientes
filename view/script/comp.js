@@ -11,7 +11,11 @@ var comp = {
     cursadas: []
   },
   methods: {
-    calcularCR(obj) {
+    calcularCR(obj, order) {
+      if (order == 1) {
+        this.cursadas = []
+      }
+      
       let tmp = 0
       let n = 0
       let d = 0
@@ -40,5 +44,21 @@ var comp = {
       tmp = n / d
       return tmp.toFixed(3);
     },
+    calcularCP() {
+      let tmp = 0;
+      let array = []
+
+      array = this.cursadas.filter(e => {
+        return e.situacao == "Aprovado"
+      });
+      
+      array.forEach(k => {
+        tmp += parseInt(k.creditos);
+      });
+
+      tmp = tmp / 180;
+
+      return tmp.toFixed(3)
+  },
   }
 }

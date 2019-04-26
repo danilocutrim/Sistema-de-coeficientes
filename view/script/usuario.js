@@ -59,11 +59,8 @@ new Vue({
         },
         validaCadastro(obj) {
             if (obj.nomealuno != null &&
-                obj.nomealuno.length > 3 &&
                 obj.ra != null &&
-                obj.ra.length > 5 &&
                 obj.senha != null &&
-                obj.senha.length > 5 &&
                 obj.curso.nomecurso != null &&
                 obj.materias.length > 0) {
                 return true;
@@ -71,31 +68,34 @@ new Vue({
                 return false;
             }
         },
+        goCadastro() {
+            window.location = "../cadastrar"
+        },
+        goLogin() {
+            window.location = "../entrar"
+        },
         cadastrar() {
             this.msg = null;
 
-            if (this.validaCadastro(this.aluno)) {
-                this.aluno.coeficientes[0].cr = this.calcularCR(this.aluno.materias);
-                this.aluno.coeficientes[0].ca = 2;
-                this.aluno.coeficientes[0].cp = 1;
+            this.aluno.coeficientes[0].cr = this.calcularCR(this.aluno.materias, 1);
+            this.aluno.coeficientes[0].ca = 2;
+            this.aluno.coeficientes[0].cp = this.calcularCP(this.aluno.materias);
 
-                axios.post('https://sistemadecoeficientes.herokuapp.com/alunos', this.aluno, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    }
-                }).then((res) => {
-                    console.log("Sucesso: " + JSON.stringify(res))
-                }).catch((err) => {
-                    this.msg = JSON.stringify(err);
-                })
-            } else {
-                this.msg = "Existem campos inválidos"
-            }
+            axios.post('https://sistemadecoeficientes.herokuapp.com/alunos', this.aluno, {
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            }).then((res) => {
+                this.msg = "Sucesso ao cadastrar";
+
+            }).catch((err) => {
+                this.msg = JSON.stringify(err);
+            })
         }
     },
     watch: {
         logado() {
-            alert("Você está logado")
+            window.location = "../home"
         },
         curso() {
             this.aluno.curso[0].nomecurso = this.curso;
