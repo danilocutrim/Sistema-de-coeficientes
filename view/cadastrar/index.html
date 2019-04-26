@@ -32,6 +32,7 @@
                 <input type="password" class="text-field" placeholder="Senha" v-model="aluno.senha">
                 <label for="file">Importar JSON</label>
                 <input type="file" @change="loadTextFromFile">
+                <p class="error">{{msg}}</p>
                 <button class="btn" @click="cadastrar">Cadastrar</button>
             </div>
         </div>
@@ -40,6 +41,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script src="../script/comp.js"></script>
     <script src="../script/usuario.js"></script>
+
 </body>
 
 </html>

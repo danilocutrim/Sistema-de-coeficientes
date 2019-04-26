@@ -33,7 +33,7 @@ new Vue({
 
             this.msg = null;
             if (this.aluno.ra != null && this.aluno.senha != null) {
-                axios.get('https://sistemadecoeficientes.herokuapp.com/alunos').then((res) => {
+                axios.get('https://sistemadecoeficientes.herokuapp.com/alunos?skip=0&limit=0').then((res) => {
 
                     let match = res.data.filter(e => {
                         return e.ra == this.aluno.ra && e.senha == this.aluno.senha
@@ -57,20 +57,40 @@ new Vue({
             })
             reader.readAsText(file);
         },
+        validaCadastro(obj) {
+            if (obj.nomealuno != null &&
+                obj.nomealuno.length > 3 &&
+                obj.ra != null &&
+                obj.ra.length > 5 &&
+                obj.senha != null &&
+                obj.senha.length > 5 &&
+                obj.curso.nomecurso != null &&
+                obj.materias.length > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        },
         cadastrar() {
-            this.aluno.coeficientes[0].cr = this.calcularCR(this.aluno.materias);
-            this.aluno.coeficientes[0].ca = 2;
-            this.aluno.coeficientes[0].cp = 1;
+            this.msg = null;
 
-            axios.post('https://sistemadecoeficientes.herokuapp.com/alunos', this.aluno, {
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            }).then((res) => {
-                console.log("Sucesso: " + JSON.stringify(res))
-            }).catch((err) => {
-                this.msg = JSON.stringify(err);
-            })
+            if (this.validaCadastro(this.aluno)) {
+                this.aluno.coeficientes[0].cr = this.calcularCR(this.aluno.materias);
+                this.aluno.coeficientes[0].ca = 2;
+                this.aluno.coeficientes[0].cp = 1;
+
+                axios.post('https://sistemadecoeficientes.herokuapp.com/alunos', this.aluno, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }).then((res) => {
+                    console.log("Sucesso: " + JSON.stringify(res))
+                }).catch((err) => {
+                    this.msg = JSON.stringify(err);
+                })
+            } else {
+                this.msg = "Existem campos inválidos"
+            }
         }
     },
     watch: {
@@ -80,7 +100,6 @@ new Vue({
         curso() {
             this.aluno.curso[0].nomecurso = this.curso;
             this.aluno.curso[0].codigocurso = "CS1912";
-
         },
         campus() {
             this.aluno.curso[0].campus = this.campus;
