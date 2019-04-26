@@ -11,62 +11,35 @@
 </head>
 
 <body>
-    <div class="container" id="cadastro">
+    <div class="container" id="app">
         <div class="row">
             <div class="spacer"></div>
             <div class="col md-4 xs-12 sm-12 card">
                 <h1>Cadastrar</h1>
-                <input type="text" class="text-field" placeholder="Nome" v-model="aluno.nome">
+                <input type="text" class="text-field" placeholder="Nome" v-model="aluno.nomealuno">
                 <input type="number" class="text-field" placeholder="RA" v-model="aluno.ra">
-                <select v-model="aluno.curso.nomeCurso" class="text-field">
-                    <option v-for="(i, index) in cursosDisponiveis" :key="index" :value="index">
-                        {{i.nomeCurso}}</option>
+                <select v-model="curso" class="text-field">
+                    <option selected disabled> Selecione um curso</option>
+                    <option>Bacharelado em ciências e tecnologias</option>
+                    <option>Ciencia da computação</option>
+
                 </select>
-                <select v-model="aluno.campus" class="text-field">
-                    <option v-for="(i, index) in campiDisponiveis" :key="index" :value="i">
-                        {{i}}</option>
+                <select v-model="campus" class="text-field">
+                    <option selected disabled>Selecione um dos campi</option>
+                    <option>Santo André</option>
+                    <option>São Bernardo do Campo</option>
                 </select>
-                <input type="email" class="text-field" placeholder="Email" v-model="aluno.email">
                 <input type="password" class="text-field" placeholder="Senha" v-model="aluno.senha">
                 <label for="file">Importar JSON</label>
-                <input type="file" @change="filex">
-                <button class="btn">Cadastrar</button>
+                <input type="file" @change="loadTextFromFile">
+                <button class="btn" @click="cadastrar">Cadastrar</button>
             </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-    <script>
-        new Vue({
-            el: "#cadastro",
-            data: {
-                cursosDisponiveis: [{
-                    nomeCurso: "Selecione o Curso",
-                    codCurso: "",
-                    creditosTotal: 0
-                }, {
-                    nomeCurso: "Ciência da computação",
-                    codCurso: "000E",
-                    creditosTotal: 90
-                }],
-                aluno: {
-                    campus: 'Selecione o Campus',
-                    nome: null,
-                    ra: null,
-                    curso: {
-                        nomeCurso: 'Selecione o Curso'
-                    },
-                    email: null,
-                    senha: null
-                },
-                campiDisponiveis: [
-                    "Selecione o Campus",
-                    "Santo André",
-                    "São Bernardo do Campo"
-                ],
-            }
-        })
-    </script>
+    <script src="../script/comp.js"></script>
+    <script src="../script/usuario.js"></script>
 </body>
 
 </html>
