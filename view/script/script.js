@@ -25,14 +25,16 @@ new Vue({
             creditos: null
         }, {
             nome: "BM",
-            creditos: 4
+            creditos: 3
         }, {
             nome: "FVV",
             creditos: 4
         }, {
             nome: "CES",
             creditos: 2
-        }, ]
+        }, ],
+
+        cursadas: []
     },
     watch: {
         nomeDisc() {
@@ -44,19 +46,34 @@ new Vue({
         }
     },
     methods: {
-        async calcularCR() {
-            let tmp = 0;
+        calcularCR() {
+            let tmp = 0,
+                n = 0,
+                d = 0;
+
             let multiplicador = Object.keys(this.pesos).filter(e => {
                 return e == this.conceito;
             });
 
-            this.numerador += parseInt(this.pesos[multiplicador] * this.creditos);
-            this.denominador += parseInt(this.creditos);
+            this.cursadas.push({
+                nome: this.nomeDisc,
+                creditos: parseInt(this.creditos),
+                peso: parseInt(this.pesos[multiplicador])
+            });
 
-            tmp = this.numerador / this.denominador
+            let check = Object.keys(this.cursadas).filter(j => {
+                return this.cursadas[j].nome == this.nomeDisc;
+            });
+
+            Object.keys(this.cursadas).forEach(i => {
+                n += (this.cursadas[i].peso * this.cursadas[i].creditos)
+                d += this.cursadas[i].creditos
+            })
+
+            tmp = n / d
             this.cr = tmp.toFixed(3);
         },
-        async calcularCP() {
+        calcularCP() {
             let tmp = 0;
             let multiplicador = Object.keys(this.pesos).filter(e => {
                 return e == this.conceito;
@@ -67,22 +84,82 @@ new Vue({
 
                 tmp = this.numerador2 / denominador
                 this.cp = tmp.toFixed(3);
+            } else {
+                this.cp = this.cp;
+            }
+        },
+        calcularCA() {
+            let tmp = 0,
+                n = 0,
+                d = 0,
+                uniq = this.cursadas;
+            let multiplicador = Object.keys(this.pesos).filter(e => {
+                return e == this.conceito;
+            });
+
+            let check = Object.keys(this.cursadas).filter(j => {
+                return this.cursadas[j].nome == this.nomeDisc;
+            });
+
+            if (check.length > 1) {
+                let tmpArray = []
+                check.forEach(h => {
+                    tmpArray.push({
+                        peso: uniq[h].peso,
+                        pos: h
+                    });
+                    uniq[h] == null;
+                });
+                console.log(tmpArray)
+
+
+                Object.keys(uniq).forEach(i => {
+
+                    if (uniq[i]) {
+                        n += (uniq[i].peso * uniq[i].creditos)
+                        d += uniq[i].creditos
+                    }
+
+                });
+
+                let maior = null;
+
+                Object.keys(tmpArray).forEach(l => {
+
+                    if (!maior) {
+                        maior = tmpArray[l].pos
+                    } else if (tmpArray[l].peso > tmpArray[maior].peso) {
+                        maior = tmpArray[l].pos
+                    }
+
+                });
+
+                n += (this.cursadas[maior].peso * this.cursadas[maior].creditos)
+                d += this.cursadas[maior].creditos
+
+                tmp = n / d
+                this.ca = tmp.toFixed(3);
+            } else {
+
+                Object.keys(this.cursadas).forEach(i => {
+                    n += (this.cursadas[i].peso * this.cursadas[i].creditos)
+                    d += this.cursadas[i].creditos
+                })
+
+                tmp = n / d
+                this.ca = tmp.toFixed(3);
             }
 
         },
-        async calcularCA() {
-
-
-        },
-        cadastrarDisc() {
+        async cadastrarDisc() {
             this.error = ""
             let isValid = false;
             (this.conceito != null && this.creditos != "" && this.nomeDisc != "") ? isValid = true: isValid = false;
-            //this.calcularCA();
-            this.calcularCP();
+
             if (isValid) {
                 this.calcularCR();
-
+                this.calcularCP();
+                await this.calcularCA();
             } else {
                 this.error = "Existe campos em brancos"
             }
