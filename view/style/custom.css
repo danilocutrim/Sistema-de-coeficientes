@@ -1,0 +1,36 @@
+body {
+    margin-top: 75px;      
+    font-family: Arial, Helvetica, sans-serif;
+    background: #eee
+}
+.card {
+    
+    padding: 50px;
+    margin: 0 auto;
+    box-shadow: 2px 2px 5px #000;
+    background: url("../vendor/img/textura-verde.JPG")
+}
+.btn {
+    background: black;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-top: 15px;
+    font-size: 20px;
+    width: 48%;
+}
+.btn:hover {
+
+    transition-property: background-color;
+    transition-duration: .3s;
+    transition-timing-function: ease;
+    transition-delay: .1s;
+    cursor: pointer;
+    background: white;
+    color: black;
+}
+.error {
+    padding: 15px 0px;
+    font-weight: bold;
+    color: red;
+}

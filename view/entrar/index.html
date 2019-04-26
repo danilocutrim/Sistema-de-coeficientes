@@ -5,41 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sistema de coeficientes</title>
-    <link rel="stylesheet" href="style/grid.css">
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            padding-top: 15%;
-        }
-        .card {
-            padding: 50px;
-            float: left;
-            margin: 0 auto;
-            box-shadow: 2px 2px 5px #000;
-        }
-        .btn {
-            background: black;
-            color: white;
-            border: none;
-            padding: 10px;
-            margin-top: 15px;
-            font-size: 20px;
-            width: 48%;
-        }
-    </style>
+    <link rel="stylesheet" href="../vendor/style/grid.css">
+    <link rel="stylesheet" href="../style/custom.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="app">
         <div class="row">
-            <div class="spacer"></div>
             <div class="col md-4 xs-12 sm-12 card">
-                <h1>Sistema de Login</h1>
-                <input type="text" name="" id="" class="text-field" placeholder="Usuário">
-                <input type="password" class="text-field" placeholder="Senha">
-                <button class="btn">Entrar</button>
+                <h1>Acesse o sistema</h1>
+                <input type="number" class="text-field" placeholder="RA" v-model="aluno.ra">
+                <input type="password" class="text-field" placeholder="Senha" v-model="aluno.senha">
+                <p class="error">{{msg}}</p>
+                <button class="btn" @click="realizarLogin">Entrar</button>
                 <button class="btn">Cadastrar</button>
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="../script/usuario.js"></script>
 </body>
 </html>
