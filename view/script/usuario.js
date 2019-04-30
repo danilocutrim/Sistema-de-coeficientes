@@ -41,6 +41,8 @@ new Vue({
 
                     (match.length > 0) ? this.logado = true: this.msg = "RA e/ou senha inválidos"
 
+                    localStorage.setItem("user", match.ra);
+
                 }).catch((err) => {
                     this.msg = err;
                 })
@@ -95,7 +97,7 @@ new Vue({
     },
     watch: {
         logado() {
-            window.location = "../home"
+            window.location = "../home";
         },
         curso() {
             this.aluno.curso[0].nomecurso = this.curso;

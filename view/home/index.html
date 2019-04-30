@@ -12,51 +12,6 @@
 
 <body>
     <div class="container" id="app">
-        <!--Simulação-->
-        <div class="row card">
-            <div class="col md-4 xs-12 sm-12">
-                <h2 class="title">Simulação</h2>
-                <p class="explain">A área de simulação é destinada para que você possa simular diversos valores
-                    fictícios, logo, a disciplina simulada não é salva junto ao seu registro</p>
-            </div>
-            <div class="col md-4 xs-12 sm-12">
-                <h2 class="title">Disciplina</h2>
-                <div class="content">
-
-
-                    <div>
-                        <span class="half">Disciplina:&nbsp;</span>
-                        <select v-model="nomeDisc" class="text-field half">
-                            <option v-for="(i, index) in disc" :key="index" :value="i.nome">{{i.nome}}</option>
-                        </select>
-                    </div>
-                    <div>
-                        <span class="half">Créditos:&nbsp;&nbsp;&nbsp;</span>
-                        <input type="number" class="text-field half" v-model="creditos" readonly>
-                    </div>
-                    <div>
-                        <span class="half">Conceito:&nbsp;&nbsp;&nbsp;</span>
-                        <select class="text-field half" v-model="conceito">
-                            <option value=""></option>
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                            <option value="D">D</option>
-                            <option value="F">F</option>
-                            <option value="O">O</option>
-                        </select>
-                    </div>
-                    <p class="error">{{error}}</p>
-                    <button class="btn" @click="cadastrarDisc">Simular</button>
-                </div>
-            </div>
-            <div class="col md-4 xs-12 sm-12">
-                <h2 class="title">Previsão</h2>
-                <p class="result">CA: {{ca}}</p>
-                <p class="result">CR: {{cr}}</p>
-                <p class="result">CP: {{cp}}</p>
-            </div>
-        </div>
         <!-- Cadastro -->
         <div class="row card mt">
                 <div class="col md-4 xs-12 sm-12">
@@ -70,17 +25,17 @@
     
                         <div>
                             <span class="half">Disciplina:&nbsp;</span>
-                            <select v-model="nomeDisc" class="text-field half">
+                            <select v-model="nomeDisc_" class="text-field half">
                                 <option v-for="(i, index) in disc" :key="index" :value="i.nome">{{i.nome}}</option>
                             </select>
                         </div>
                         <div>
                             <span class="half">Créditos:&nbsp;&nbsp;&nbsp;</span>
-                            <input type="number" class="text-field half" v-model="creditos" readonly>
+                            <input type="number" class="text-field half" v-model="creditos_" readonly>
                         </div>
                         <div>
                             <span class="half">Conceito:&nbsp;&nbsp;&nbsp;</span>
-                            <select class="text-field half" v-model="conceito">
+                            <select class="text-field half" v-model="conceito_">
                                 <option value=""></option>
                                 <option value="A">A</option>
                                 <option value="B">B</option>
@@ -96,13 +51,15 @@
                 </div>
                 <div class="col md-4 xs-12 sm-12">
                     <h2 class="title">Coeficientes</h2>
-                    <p class="result">CA: {{ca}}</p>
-                    <p class="result">CR: {{cr}}</p>
-                    <p class="result">CP: {{cp}}</p>
+                    <p class="result">CA: {{ca_}}</p>
+                    <p class="result">CR: {{cr_}}</p>
+                    <p class="result">CP: {{cp_}}</p>
                 </div>
             </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="../script/comp.js"></script>
     <script src="../script/script.js"></script>
 </body>
 

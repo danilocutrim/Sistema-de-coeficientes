@@ -127,7 +127,7 @@ describe('Suite de teste para rotas Dos Aluno',function(){
         console.log(result.statusCode)
         assert.deepEqual(result.statusCode,200)
     })
-    it.only('deve atualizar coeficientes com id do aluno',async()=>{
+    it('deve atualizar coeficientes com id do aluno',async()=>{
         const id = '5cbf927082015b1a6a4e8c42'
         const result = await app.inject({
             method:'PATH',
