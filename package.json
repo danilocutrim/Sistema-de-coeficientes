@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --timeout 10000 src/tests/*.js -w",
-    "prod": "cross=env NODE_ENV=prod node ./src/controllers/api.js"
+    "start": "cross=env NODE_ENV=prod node ./src/controllers/api.js"
   },
   "author": "",
   "license": "ISC",
