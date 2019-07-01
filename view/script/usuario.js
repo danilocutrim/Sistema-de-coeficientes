@@ -33,7 +33,7 @@ new Vue({
 
             this.msg = null;
             if (this.aluno.ra != null && this.aluno.senha != null) {
-                axios.get('https://sistemadecoeficientes.herokuapp.com/alunos?skip=0&limit=0').then((res) => {
+                axios.get('54.91.165.194:3000/alunos?skip=0&limit=0').then((res) => {
 
                     let match = res.data.filter(e => {
                         return e.ra == this.aluno.ra && e.senha == this.aluno.senha
@@ -83,7 +83,7 @@ new Vue({
             this.aluno.coeficientes[0].ca = 2;
             this.aluno.coeficientes[0].cp = this.calcularCP(this.aluno.materias);
 
-            axios.post('https://sistemadecoeficientes.herokuapp.com/alunos', this.aluno, {
+            axios.post('54.91.165.194:3000/alunos', this.aluno, {
                 headers: {
                     'Content-Type': 'application/json',
                 }

@@ -133,7 +133,7 @@ new Vue({
     },
     created() {
         let ra = "11201720166";
-        axios.get('https://sistemadecoeficientes.herokuapp.com/alunos?skip=0&limit=0').then((res) => {
+        axios.get('54.91.165.194:3000/alunos?skip=0&limit=0').then((res) => {
 
             let match = res.data.filter(e => {
                 return e.ra == ra

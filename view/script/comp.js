@@ -43,7 +43,7 @@ var comp = {
         n += (this.cursadas[i].peso * this.cursadas[i].creditos)
         d += this.cursadas[i].creditos
       })
-     
+
 
       this.id ++;
 
@@ -81,7 +81,7 @@ var comp = {
       periodo: "string",
       situacao: "string"
     }
-    axios.post('https://sistemadecoeficientes.herokuapp.com/addmateria/5555E', x, {
+    axios.post('54.91.165.194:3000/addmateria/5555E', x, {
       headers: {
         'Content-Type': 'application/json',
       }
